@@ -1,22 +1,116 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Resources\Audio">
+      <UniqueIdentifier>{eddfcdbb-db61-4df0-bc25-d4c3c7f4bf00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Core">
+      <UniqueIdentifier>{13908dbb-b1c1-43a4-8838-2aac1bf633ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Framework">
+      <UniqueIdentifier>{5b49aab5-86c3-4da9-a96a-a0d04214c261}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Input">
+      <UniqueIdentifier>{ba2c598c-6bd8-4b2f-bc1c-d9b7dbf3742b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Math">
+      <UniqueIdentifier>{7a613422-7875-4410-933b-233d1bd29da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Graphics">
+      <UniqueIdentifier>{61c86641-63c9-49da-9414-c0771b6eba58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Object">
+      <UniqueIdentifier>{4c9dc128-c6c3-412f-857e-a19db85f6628}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Resource">
+      <UniqueIdentifier>{ec4b726e-de97-44f4-9ec8-4738043380c5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Engine.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Framework\EventSystem.cpp">
+      <Filter>Resources\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="Math\Color.cpp">
+      <Filter>Resources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Random.cpp">
+      <Filter>Resources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Transform.cpp">
+      <Filter>Resources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Resources\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Actor.cpp">
+      <Filter>Resources\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Object\Scene.cpp">
+      <Filter>Resources\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\FileSystem.cpp">
+      <Filter>Resources\Core</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Framework\EventSystem.h">
+      <Filter>Resources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Framework\System.h">
+      <Filter>Resources\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Color.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\MathUtils.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix22.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix33.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Random.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Transform.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Resources\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Actor.h">
+      <Filter>Resources\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Object.h">
+      <Filter>Resources\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Object\Scene.h">
+      <Filter>Resources\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\ResourceSystem.h">
+      <Filter>Resources\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\FileSystem.h">
+      <Filter>Resources\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
