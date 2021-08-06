@@ -65,6 +65,15 @@
     <ClCompile Include="Core\FileSystem.cpp">
       <Filter>Resources\Core</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Renderer.cpp">
+      <Filter>Resources\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Texture.cpp">
+      <Filter>Resources\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer.cpp">
+      <Filter>Resources\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -110,6 +119,18 @@
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="Core\FileSystem.h">
+      <Filter>Resources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Renderer.h">
+      <Filter>Resources\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Texture.h">
+      <Filter>Resources\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource\Resource.h">
+      <Filter>Resources\Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timer.h">
       <Filter>Resources\Core</Filter>
     </ClInclude>
   </ItemGroup>

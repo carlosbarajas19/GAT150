@@ -8,6 +8,7 @@
 
 //core
 #include "Core/FileSystem.h"
+#include "Core/Timer.h"
 
 //Math
 #include "Math/Vector2.h"
@@ -17,7 +18,8 @@
 #include "Math/Transform.h"
 
 //graphics
-
+#include "Graphics/Renderer.h"
+#include "Graphics/Texture.h"
 
 //objects
 #include "Object/Scene.h"
@@ -36,12 +38,13 @@ namespace nc
 		void Startup();
 		void Shutdown();
 
-		void Update(float dt);
+		void Update();
 		void Draw();
 
 		template<typename T>
 		T* Get();
-
+	public:
+		FrameTimer time;
 	private:
 		std::vector<std::unique_ptr<System>> systems;
 	};
