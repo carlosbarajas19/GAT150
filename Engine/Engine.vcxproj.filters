@@ -59,9 +59,6 @@
     <ClCompile Include="Engine.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="FileSystem.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Core\FileSystem.cpp">
       <Filter>Resources\Core</Filter>
     </ClCompile>
@@ -73,6 +70,12 @@
     </ClCompile>
     <ClCompile Include="Core\Timer.cpp">
       <Filter>Resources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputSystem.cpp">
+      <Filter>Resources\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\ParticleSystem.cpp">
+      <Filter>Resources\Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -132,6 +135,12 @@
     </ClInclude>
     <ClInclude Include="Core\Timer.h">
       <Filter>Resources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputSystem.h">
+      <Filter>Resources\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\ParticleSystem.h">
+      <Filter>Resources\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

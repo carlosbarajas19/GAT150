@@ -13,6 +13,6 @@ namespace nc
 	class GraphicsSystem : public System
 	{
 	public:
-		virtual void Draw();
+		virtual void Draw(class Renderer* renderer) = 0;
 	};
 }

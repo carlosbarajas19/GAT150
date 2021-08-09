@@ -45,12 +45,30 @@ int main(int, char**)
 		scene.Update(engine.time.deltaTime);
 
 		//std::cout << engine.time.time << std::endl;
-		if (engine.time.time >= quitTime) quit = true;
+		if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eKeyState::Pressed) quit = true;
+
+		if (engine.Get<nc::InputSystem>()->GetButtonState((int)nc::InputSystem::eMouseButton::Right) == nc::InputSystem::eKeyState::Pressed)
+		{
+			nc::Vector2 position = engine.Get<nc::InputSystem>()->GetMousePosition();
+			std::cout << position.x << " " << position.y << std::endl;
+		};
+
+		std::shared_ptr<nc::Texture> particle = engine.Get<nc::ResourceSystem>()->Get<nc::Texture>("particle01.png", engine.Get<nc::Renderer>());
+
+		if (engine.Get<nc::InputSystem>()->GetButtonState((int)nc::InputSystem::eMouseButton::Left) == nc::InputSystem::eKeyState::Pressed)
+		{
+			nc::Vector2 position = engine.Get<nc::InputSystem>()->GetMousePosition();
+			nc::Transform transform{ position, 0.0f, 1.0f };
+			std::unique_ptr<nc::Actor> actor = std::make_unique<nc::Actor>(transform, particle);
+			scene.AddActor(std::move(actor));
+		};
+
 		engine.time.timeScale = 10.0f;
 
 		engine.Get<nc::Renderer>()->BeginFrame();
 		
 		scene.Draw(engine.Get<nc::Renderer>());
+		engine.Draw(engine.Get<nc::Renderer>());
 		//nc::Vector2 position{ 300, 300 };
 		//engine.Get<nc::Renderer>()->Draw(texture, position, 0.0f, nc::Vector2{3, 3});
 		
