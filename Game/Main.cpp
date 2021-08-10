@@ -16,6 +16,9 @@ int main(int, char**)
 
 	nc::SetFilePath("../Resources");
 
+	engine.Get<nc::AudioSystem>()->AddAudio("explosion", "audio/explosion.wav");
+	engine.Get<nc::AudioSystem>()->AddAudio("music", "audio/dreams.mp3");
+	nc::AudioChannel channel = engine.Get<nc::AudioSystem>()->PlayAudio("music", 1, 1, true);
 
 	std::shared_ptr<nc::Texture> texture = engine.Get<nc::ResourceSystem>()->Get<nc::Texture>("sf2.png", engine.Get<nc::Renderer>());
 	
@@ -55,12 +58,13 @@ int main(int, char**)
 
 		std::shared_ptr<nc::Texture> particle = engine.Get<nc::ResourceSystem>()->Get<nc::Texture>("particle01.png", engine.Get<nc::Renderer>());
 
-		if (engine.Get<nc::InputSystem>()->GetButtonState((int)nc::InputSystem::eMouseButton::Left) == nc::InputSystem::eKeyState::Pressed)
+		if (engine.Get<nc::InputSystem>()->GetButtonState((int)nc::InputSystem::eMouseButton::Left) == nc::InputSystem::eKeyState::Held)
 		{
 			nc::Vector2 position = engine.Get<nc::InputSystem>()->GetMousePosition();
-			nc::Transform transform{ position, 0.0f, 1.0f };
-			std::unique_ptr<nc::Actor> actor = std::make_unique<nc::Actor>(transform, particle);
-			scene.AddActor(std::move(actor));
+			engine.Get<nc::ParticleSystem>()->Create(position, 1, 5, particle, 50);
+			engine.Get<nc::AudioSystem>()->PlayAudio("explosion", 1, nc::RandomRange(-2.0f, 2.0f));
+			channel.SetPitch(nc::RandomRangeInt(0.5f, 2.0f));
+
 		};
 
 		engine.time.timeScale = 10.0f;
