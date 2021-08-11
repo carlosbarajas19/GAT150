@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include <SDL_image.h>
 #include <iostream>
+#include <SDL_ttf.h> 
 
 namespace nc
 {
@@ -12,11 +13,13 @@ namespace nc
 		}
 
 		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
+		TTF_Init();
 	}
 
 	void Renderer::Shutdown()
 	{
 		IMG_Quit();
+		TTF_Quit();
 		SDL_DestroyRenderer(renderer);
 		SDL_DestroyWindow(window);
 	}
@@ -55,7 +58,7 @@ namespace nc
 		size = size * scale;
 		SDL_Rect dest{ int(position.x), int(position.y), static_cast<int>(size.x), static_cast<int>(size.y) };
 
-		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, angle, nullptr, SDL_FLIP_HORIZONTAL);
+		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
 	}
 	void Renderer::Draw(std::shared_ptr<nc::Texture> texture, const Transform& transform)
 	{
@@ -63,6 +66,6 @@ namespace nc
 		size = size * transform.scale;
 		SDL_Rect dest{ int(transform.position.x), int(transform.position.y), static_cast<int>(size.x), static_cast<int>(size.y) };
 
-		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, transform.rotation, nullptr, SDL_FLIP_HORIZONTAL);
+		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, transform.rotation, nullptr, SDL_FLIP_NONE);
 	}
 }

@@ -83,6 +83,12 @@
     <ClCompile Include="Audio\AudioChannel.cpp">
       <Filter>Resources\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\Font.cpp">
+      <Filter>Resources\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Utilities.cpp">
+      <Filter>Resources\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -153,6 +159,12 @@
     </ClInclude>
     <ClInclude Include="Audio\AudioChannel.h">
       <Filter>Resources\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Font.h">
+      <Filter>Resources\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utilities.h">
+      <Filter>Resources\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

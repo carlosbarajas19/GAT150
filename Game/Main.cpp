@@ -2,10 +2,12 @@
 #include <SDL_Image.h>
 #include <iostream>
 #include <SDL.h>
+#include <cassert>
+
+#define MSG(message) std::cout << #message << " Line: "<<__LINE__ <<std::endl;
 
 int main(int, char**)
 {
-
 	nc::Engine engine;
 	engine.Startup();
 
@@ -34,6 +36,18 @@ int main(int, char**)
 	SDL_Event event;
 	float quitTime = engine.time.time + 3.0f;
 
+	// get font from resource system
+	int size = 16;
+	std::shared_ptr<nc::Font> font = engine.Get<nc::ResourceSystem>()->Get<nc::Font>("fonts/ArcadeClassic.ttf", &size);
+
+	// create font texture
+	std::shared_ptr<nc::Texture> textTexture = std::make_shared<nc::Texture>(engine.Get<nc::Renderer>());
+	// set font texture with font surface
+	textTexture->Create(font->CreateSurface("hello world", nc::Color{ 1, 1, 1 }));
+	// add font texture to resource system
+	engine.Get<nc::ResourceSystem>()->Add("textTexture", textTexture);
+
+
 	while (!quit)
 	{
 		SDL_PollEvent(&event);
@@ -61,7 +75,7 @@ int main(int, char**)
 		if (engine.Get<nc::InputSystem>()->GetButtonState((int)nc::InputSystem::eMouseButton::Left) == nc::InputSystem::eKeyState::Held)
 		{
 			nc::Vector2 position = engine.Get<nc::InputSystem>()->GetMousePosition();
-			engine.Get<nc::ParticleSystem>()->Create(position, 1, 5, particle, 50);
+			engine.Get<nc::ParticleSystem>()->Create(position, 1, 5, particle, 10);
 			engine.Get<nc::AudioSystem>()->PlayAudio("explosion", 1, nc::RandomRange(-2.0f, 2.0f));
 			channel.SetPitch(nc::RandomRangeInt(0.5f, 2.0f));
 
@@ -76,6 +90,11 @@ int main(int, char**)
 		//nc::Vector2 position{ 300, 300 };
 		//engine.Get<nc::Renderer>()->Draw(texture, position, 0.0f, nc::Vector2{3, 3});
 		
+		nc::Transform t;
+		t.position = { 30, 30 };
+		engine.Get<nc::Renderer>()->Draw(textTexture, t);
+
+
 		engine.Get<nc::Renderer>()->EndFrame();
 
 		/*for (size_t i = 0; i < 50; i++)
