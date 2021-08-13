@@ -1,4 +1,5 @@
-#include "Renderer.h"
+#include "Renderer.h"	
+#include "Math/MathUtils.h"
 #include <SDL_image.h>
 #include <iostream>
 #include <SDL_ttf.h> 
@@ -56,16 +57,31 @@ namespace nc
 	{
 		Vector2 size = texture->GetSize();
 		size = size * scale;
-		SDL_Rect dest{ int(position.x), int(position.y), static_cast<int>(size.x), static_cast<int>(size.y) };
+		Vector2 newPosition = position - (size * 0.5f);
 
-		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, angle, nullptr, SDL_FLIP_NONE);
+		SDL_Rect rect;
+		rect.x = static_cast<int>(newPosition.x);
+		rect.y = static_cast<int>(newPosition.y);
+		rect.w = static_cast<int>(size.x);
+		rect.h = static_cast<int>(size.y);
+
+		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &rect, nc::RadToDeg(angle), nullptr, SDL_FLIP_NONE);
 	}
 	void Renderer::Draw(std::shared_ptr<nc::Texture> texture, const Transform& transform)
 	{
 		Vector2 size = texture->GetSize();
 		size = size * transform.scale;
-		SDL_Rect dest{ int(transform.position.x), int(transform.position.y), static_cast<int>(size.x), static_cast<int>(size.y) };
 
-		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, transform.rotation, nullptr, SDL_FLIP_NONE);
+		Vector2 newPosition = transform.position - (size * 0.5f);
+
+		SDL_Rect dest;
+		dest.x = static_cast<int>(newPosition.x);
+		dest.y = static_cast<int>(newPosition.y);
+		dest.w = static_cast<int>(size.x);
+		dest.h = static_cast<int>(size.y);
+
+		//SDL_Rect dest{ int(transform.position.x), int(transform.position.y), static_cast<int>(size.x), static_cast<int>(size.y) };
+
+		SDL_RenderCopyEx(renderer, texture->texture, nullptr, &dest, nc::RadToDeg(transform.rotation), nullptr, SDL_FLIP_NONE);
 	}
 }

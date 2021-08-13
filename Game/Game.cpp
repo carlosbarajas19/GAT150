@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Actors/Player.h"
 
 void Game::Initialize()
 {
@@ -63,6 +64,7 @@ void Game::Shutdown()
 
 void Game::Update()
 {
+	engine->Update();
 	stateTimer += engine->time.deltaTime;;
 
 	//(this->*stateFunction)(dt);
@@ -111,9 +113,6 @@ void Game::Update()
 		break;
 	}
 
-	engine->Update();
-	scene->Update(engine->time.deltaTime);
-
 	//std::cout << engine->time.time << std::endl;
 	if (engine->Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_ESCAPE) == nc::InputSystem::eKeyState::Pressed) quit = true;
 
@@ -133,6 +132,8 @@ void Game::Update()
 		musicChannel.SetPitch(nc::RandomRangeInt(0.5f, 2.0f));
 
 	};
+
+	scene->Update(engine->time.deltaTime);
 }
 
 void Game::Draw()
@@ -168,8 +169,8 @@ void Game::Draw()
 
 	engine->Get<nc::Renderer>()->BeginFrame();
 
-	scene->Draw(engine->Get<nc::Renderer>());
 	engine->Draw(engine->Get<nc::Renderer>());
+	scene->Draw(engine->Get<nc::Renderer>());
 
 	nc::Transform t;
 	t.position = { 30, 30 };
@@ -190,6 +191,7 @@ void Game::UpdateTitle(float dt)
 
 void Game::UpdateStartLevel(float dt)
 {
+	scene->AddActor(std::make_unique<Player>(nc::Transform{ nc::Vector2(400, 300), 0, 3 }, engine->Get<nc::ResourceSystem>()->Get<nc::Texture>("robot.png", engine->Get<nc::Renderer>()), 60));
 	/*if (level == 1)
 	{
 		scene->AddActor(std::make_unique<Player>(nc::Transform{ nc::Vector2(400, 300), 0, 3 }, engine->Get<nc::ResourceSystem>()->Get<nc::Shape>("Shape.txt"), 1000));
