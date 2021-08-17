@@ -1,4 +1,5 @@
 #pragma once
+#include "Component/Component.h"
 #include "Object.h"
 #include "Math/Transform.h"
 #include <memory>
@@ -15,7 +16,7 @@ namespace nc
 	public:
 
 		Actor() {}
-		Actor(const Transform& transform, std::shared_ptr<Texture> texture = {}) : transform{ transform }, texture{ texture } {}
+		Actor(const Transform& transform ) : transform{ transform } {}
 
 		virtual void Initialize() {}	
 
@@ -25,14 +26,14 @@ namespace nc
 		virtual void OnCollision(Actor* actor) {}
 
 		void AddChild(std::unique_ptr<Actor> actor);
+		void AddComponent(std::unique_ptr<Component> component);
 
 		float GetRadius();
+
 
 	public:
 		bool destroy{ false };
 		std::string tag;
-
-		std::shared_ptr<Texture> texture;
 
 		Transform transform;
 		Scene* scene{ nullptr };
@@ -40,5 +41,7 @@ namespace nc
 		Actor* parent{ nullptr };
 		
 		std::vector<std::unique_ptr<Actor>> children;
+
+		std::vector<std::unique_ptr<Component>> components;
 	};
 }

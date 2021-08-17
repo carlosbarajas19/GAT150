@@ -28,6 +28,8 @@
 //objects
 #include "Object/Scene.h"
 #include "Object/Actor.h"
+#include "Component/SpriteComponent.h"
+#include "Component/PhysicsComponent.h"
 
 #define NOMINMAX
 #include <vector>
