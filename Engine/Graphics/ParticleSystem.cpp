@@ -58,6 +58,24 @@ namespace nc
 		}
 	}
 
+	void ParticleSystem::Create(Vector2 position, size_t count, float lifetime, std::shared_ptr<Texture> texture, float speed, float angle, float angleRange)
+	{
+		for (size_t i = 0; i < count; i++)
+		{
+			auto particle = std::find_if(particles.begin(), particles.end(), Particle::isNotActive);
+			if (particle != particles.end())
+			{
+				particle->isActive = true;
+				particle->lifetime = lifetime;
+				particle->position = position;
+				particle->prevPosition = position;
+				particle->texture = texture;
+				particle->velocity = nc::Vector2::Rotate(nc::Vector2::right, angle += nc::RandomRange(-angleRange, angleRange)) * (speed * Random());
+
+			}
+		}
+	}
+
 	void ParticleSystem::Create(Vector2 position, size_t count, float lifetime, const std::vector<Color>& colors, float speed, float angle, float angleRange)
 	{
 		for (size_t i = 0; i < count; i++)

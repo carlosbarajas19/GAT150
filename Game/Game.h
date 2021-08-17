@@ -4,7 +4,7 @@
 class Game
 {
 public:
-	
+
 	enum class eState
 	{
 		Title,
@@ -31,6 +31,7 @@ private:
 
 
 public:
+	std::unique_ptr<nc::Actor> player;
 	std::unique_ptr<nc::Engine> engine;
 	std::unique_ptr<nc::Scene> scene;
 
