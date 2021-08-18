@@ -15,18 +15,26 @@ void Game::Initialize()
 	nc::SeedRandom(static_cast<unsigned int>(time(nullptr)));
 	nc::SetFilePath("../Resources");
 
-	std::unique_ptr<nc::Actor> actor = std::make_unique<nc::Actor>(nc::Transform{ {400, 300} });
+	//std::unique_ptr<nc::Actor> actor = std::make_unique<nc::Actor>(nc::Transform{ {400, 300} });
+	//{
+	//	nc::SpriteComponent* component = actor->AddComponent<nc::SpriteComponent>();
+	//	component->texture = engine->Get<nc::ResourceSystem>()->Get<nc::Texture>("notSonic.png", engine->Get<nc::Renderer>());
+	//}
+	//{
+	//	nc::PhysicsComponent* component = actor->AddComponent<nc::PhysicsComponent>();
+	//	//component->ApplyForce(nc::Vector2::right * 200);
+	//}   
+
+	std::unique_ptr<nc::Actor> actor = std::make_unique <nc::Actor>(nc::Transform{ nc::Vector2{400, 300}, 0, 10 });
 	{
-		std::unique_ptr<nc::SpriteComponent> component = std::make_unique<nc::SpriteComponent>();
-		component->texture = engine->Get<nc::ResourceSystem>()->Get<nc::Texture>("sf2.png", engine->Get<nc::Renderer>());
-		actor->AddComponent(std::move(component));
-	}
-	{
-		std::unique_ptr<nc::PhysicsComponent> component = std::make_unique<nc::PhysicsComponent>();
-		component->ApplyForce(nc::Vector2::right * 200);
-		actor->AddComponent(std::move(component));
+		nc::SpriteAnimationComponent* component = actor->AddComponent<nc::SpriteAnimationComponent>();
+		component->texture = engine->Get<nc::ResourceSystem>()->Get<nc::Texture>("notSonic.png", engine->Get<nc::Renderer>());
+		component->fps = 30;
+		component->numFramesX = 12;
+		component->numFramesY = 8;
 	}
 	scene->AddActor(std::move(actor));
+
 }
 
 void Game::Shutdown()
