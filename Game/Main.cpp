@@ -1,7 +1,5 @@
 #include "Game.h"
 
-#define MSG(message) std::cout << #message << " Line: "<<__LINE__ <<std::endl;
-
 int main(int, char**)
 {
 	Game game;
