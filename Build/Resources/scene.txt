@@ -1,0 +1,32 @@
+{
+   "actors":[
+      {
+         "type":"Actor",
+         "tag":"Player",
+         "transform":{
+            "position":[
+               400,
+               300
+            ],
+            "rotation":0,
+            "scale":[2, 2]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":" "
+            },
+            {
+               "type":"PhysicsComponent"
+            },
+            {
+                    "type":"SpriteAnimationComponent",
+                    "textureName":"notSonic.png",
+                    "fps":24,
+                    "numFramesX":12,
+                    "numFramesY":2
+            }
+         ]
+      }
+   ]
+}

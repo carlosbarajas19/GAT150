@@ -1,6 +1,7 @@
 #pragma once
 #include <cmath>
 #include <iostream>
+#include <fstream>
 
 namespace nc
 {
@@ -15,7 +16,6 @@ namespace nc
 
 		float& operator [] (size_t index) { return (&x)[index]; }
 		const float& operator [] (size_t index) const { return (&x)[index]; }
-
 
 		void Set(float x, float y) { this->x = x; this->y = y; }
 
@@ -59,6 +59,7 @@ namespace nc
 		static float Dot(const Vector2& v1, const Vector2& v2);
 
 		friend std::istream& operator >> (std::istream& stream, Vector2& v);
+		friend std::ostream& operator << (std::ostream& stream, Vector2& v);
 
 		static const Vector2 up;
 		static const Vector2 down;

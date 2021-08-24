@@ -14,18 +14,23 @@ void Game::Initialize()
 	nc::SeedRandom(static_cast<unsigned int>(time(nullptr)));
 	nc::SetFilePath("../Resources"); 
 
-	std::unique_ptr<nc::Actor> actor = std::make_unique <nc::Actor>(nc::Transform{ nc::Vector2{400, 300}, 0, 3 });
-	{
-		auto component = nc::ObjectFactory::Instance().Create<nc::SpriteAnimationComponent>("SpriteAnimationComponent");
-		//nc::SpriteAnimationComponent* component = actor->AddComponent<nc::SpriteAnimationComponent>();
-		component->texture = engine->Get<nc::ResourceSystem>()->Get<nc::Texture>("notSonic.png", engine->Get<nc::Renderer>());
-		component->fps = 12;
-		component->numFramesX = 12;
-		component->numFramesY = 8;
+	rapidjson::Document document;
+	bool success = nc::json::Load("scene.txt", document);
+	assert(success);
+	scene->Read(document);
 
-		actor->AddComponent(std::move(component));
-	}
-	scene->AddActor(std::move(actor));
+	//std::unique_ptr<nc::Actor> actor = std::make_unique <nc::Actor>(nc::Transform{ nc::Vector2{400, 300}, 0, 3 });
+	//{
+	//	auto component = nc::ObjectFactory::Instance().Create<nc::SpriteAnimationComponent>("SpriteAnimationComponent");
+	//	//nc::SpriteAnimationComponent* component = actor->AddComponent<nc::SpriteAnimationComponent>();
+	//	component->texture = engine->Get<nc::ResourceSystem>()->Get<nc::Texture>("notSonic.png", engine->Get<nc::Renderer>());
+	//	component->fps = 12;
+	//	component->numFramesX = 12;
+	//	component->numFramesY = 8;
+
+	//	actor->AddComponent(std::move(component));
+	//}
+	//scene->AddActor(std::move(actor));
 
 }
 

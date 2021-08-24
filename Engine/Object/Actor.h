@@ -1,5 +1,6 @@
 #pragma once
 #include "Component/Component.h"
+#include "Core/Serializable.h"
 #include "Object.h"
 #include "Math/Transform.h"
 #include <memory>
@@ -11,7 +12,7 @@ namespace nc
 	class Texture;
 	class Renderer;
 
-	class Actor : public Object
+	class Actor : public Object, public ISerializable
 	{
 	public:
 
@@ -33,6 +34,8 @@ namespace nc
 
 		float GetRadius();
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
 		bool destroy{ false };
@@ -46,6 +49,7 @@ namespace nc
 		std::vector<std::unique_ptr<Actor>> children;
 
 		std::vector<std::unique_ptr<Component>> components;
+
 	};
 
 	template<class T>
