@@ -1,6 +1,6 @@
 #pragma once
 
-#define REGISTER_CLASS(class) ObjectFactory::Instance().Register<class>(#class);
+#define REGISTER_CLASS(class) nc::ObjectFactory::Instance().Register<class>(#class);
 
 //systems
 #include "Audio/AudioSystem.h"
@@ -32,12 +32,16 @@
 #include "Graphics/Texture.h"
 #include "Graphics/Font.h"
 
+//Physics System
+#include "Physics/PhysicsSystem.h"
+
 //objects
 #include "Object/Scene.h"
 #include "Object/Actor.h"
 #include "Component/SpriteComponent.h"
 #include "Component/SpriteAnimationComponent.h"
 #include "Component/PhysicsComponent.h"
+#include "Component/RBPhysicsComponent.h"
 
 #define NOMINMAX
 #include <vector>

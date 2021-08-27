@@ -36,6 +36,9 @@
     <Filter Include="Resources\Component">
       <UniqueIdentifier>{6135548c-88d0-4244-b6ce-c1c35e16b63b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Physics">
+      <UniqueIdentifier>{904cfe7b-cc5f-40b3-a702-228e2d76518a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Framework\EventSystem.cpp">
@@ -103,6 +106,15 @@
     </ClCompile>
     <ClCompile Include="Core\Json.cpp">
       <Filter>Resources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\RBPhysicsComponent.cpp">
+      <Filter>Resources\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsSystem.cpp">
+      <Filter>Resources\Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\ContactListener.cpp">
+      <Filter>Resources\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +219,15 @@
     </ClInclude>
     <ClInclude Include="Core\Serializable.h">
       <Filter>Resources\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\RBPhysicsComponent.h">
+      <Filter>Resources\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsSystem.h">
+      <Filter>Resources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\ContactListener.h">
+      <Filter>Resources\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
