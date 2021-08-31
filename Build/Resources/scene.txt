@@ -41,25 +41,25 @@
                "numFramesY":11,
                "startFrame":90,
                "endFrame":95,
-               "sequences": [
-                    {
-                        "name":"idle",
-                        "sequence.fps":1,
-                        "sequence.startFrame":0,
-                        "sequence.endFrame":1
-                    },
-                    {
-                        "name":"walk_right",
-                        "sequence.fps":10,
-                        "sequence.startFrame":90,
-                        "sequence.endFrame":95
-                    },
-                    {
-                        "name":"walk_left",
-                        "sequence.fps":10,
-                        "sequence.startFrame":162,
-                        "sequence.endFrame":167
-                    }
+               "sequences":[
+                  {
+                     "name":"idle",
+                     "sequence.fps":1,
+                     "sequence.startFrame":0,
+                     "sequence.endFrame":1
+                  },
+                  {
+                     "name":"walk_right",
+                     "sequence.fps":10,
+                     "sequence.startFrame":90,
+                     "sequence.endFrame":95
+                  },
+                  {
+                     "name":"walk_left",
+                     "sequence.fps":10,
+                     "sequence.startFrame":162,
+                     "sequence.endFrame":167
+                  }
                ],
                "defaultSequence":"idle"
             }
@@ -98,6 +98,44 @@
                "textureName":"bat.png",
                "fps":2,
                "numFramesX":4,
+               "numFramesY":1
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "prototype":true,
+         "name":"coin",
+         "tag":"pickUp",
+         "transform":{
+            "position":[
+               500,
+               200
+            ],
+            "rotation":0
+         },
+         "components":[
+            {
+               "type":"PickUpComponent"
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":true,
+               "data.isSensor": true,
+               "data.density":1,
+               "data.lockAngle":true,
+               "data.restitution":0,
+               "data.gravityScale":0,
+               "data.size":[
+                  64,
+                  96
+               ]
+            },
+            {
+               "type":"SpriteAnimationComponent",
+               "textureName":"coin.png",
+               "fps":2,
+               "numFramesX":8,
                "numFramesY":1
             }
          ]

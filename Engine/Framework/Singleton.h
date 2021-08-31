@@ -13,6 +13,7 @@ namespace nc
 		static T& Instance() 
 		{
 			static T instance;
+			
 			return instance;
 		}
 

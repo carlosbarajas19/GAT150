@@ -116,6 +116,9 @@
     <ClCompile Include="Physics\ContactListener.cpp">
       <Filter>Resources\Physics</Filter>
     </ClCompile>
+    <ClCompile Include="Component\AudioComponent.cpp">
+      <Filter>Resources\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -228,6 +231,12 @@
     </ClInclude>
     <ClInclude Include="Physics\ContactListener.h">
       <Filter>Resources\Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\AudioComponent.h">
+      <Filter>Resources\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\TextComponent.h">
+      <Filter>Resources\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

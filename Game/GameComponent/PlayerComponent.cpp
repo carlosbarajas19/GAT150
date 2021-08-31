@@ -3,11 +3,18 @@
 
 using namespace nc;
 
+PlayerComponent::~PlayerComponent()
+{
+	owner->scene->engine->Get<EventSystem>()->UnSubscribe("collision_enter", owner);
+	owner->scene->engine->Get<EventSystem>()->UnSubscribe("collision_exit", owner);
+}
+
 void PlayerComponent::Create()
 {
 	owner->scene->engine->Get<EventSystem>()->Subscribe("collision_enter", std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1), owner);
 	owner->scene->engine->Get<EventSystem>()->Subscribe("collision_exit", std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1), owner);
 	owner->scene->engine->Get<AudioSystem>()->AddAudio("hurt", "audio/hurt.wav");
+	owner->scene->engine->Get<AudioSystem>()->AddAudio("coin", "audio/hurt.wav");
 }
 
 void PlayerComponent::Update()
@@ -53,6 +60,11 @@ void PlayerComponent::OnCollisionEnter(const Event& event)
 	if (istring_compare(actor->tag, "enemy"))
 	{
 		owner->scene->engine->Get<AudioSystem>()->PlayAudio("hurt");
+	}
+	if (istring_compare(actor->tag, "pickUp"))
+	{
+		owner->scene->engine->Get<AudioSystem>()->PlayAudio("coin");
+		actor->destroy = true;
 	}
 }
 
