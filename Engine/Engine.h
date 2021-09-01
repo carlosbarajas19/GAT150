@@ -42,6 +42,8 @@
 #include "Component/SpriteAnimationComponent.h"
 #include "Component/PhysicsComponent.h"
 #include "Component/RBPhysicsComponent.h"
+#include "Object/Tilemap.h"
+#include "Component/TextComponent.h"
 
 #define NOMINMAX
 #include <vector>

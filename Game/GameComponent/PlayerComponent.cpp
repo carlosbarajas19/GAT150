@@ -14,7 +14,7 @@ void PlayerComponent::Create()
 	owner->scene->engine->Get<EventSystem>()->Subscribe("collision_enter", std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1), owner);
 	owner->scene->engine->Get<EventSystem>()->Subscribe("collision_exit", std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1), owner);
 	owner->scene->engine->Get<AudioSystem>()->AddAudio("hurt", "audio/hurt.wav");
-	owner->scene->engine->Get<AudioSystem>()->AddAudio("coin", "audio/hurt.wav");
+	owner->scene->engine->Get<AudioSystem>()->AddAudio("coin", "audio/coin.wav");
 }
 
 void PlayerComponent::Update()
@@ -28,9 +28,10 @@ void PlayerComponent::Update()
 	{
 		force.x += speed;
 	}
-	if (contacts.size() > 0 && owner->scene->engine->Get<InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == InputSystem::eKeyState::Pressed)
+	if (numJumps > 0 && owner->scene->engine->Get<InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == InputSystem::eKeyState::Pressed)
 	{
-		force.y -= 300;
+		force.y -= jump;
+		numJumps--;
 	}
 	if (owner->scene->engine->Get<InputSystem>()->GetKeyState(SDL_SCANCODE_S) == InputSystem::eKeyState::Held)
 	{
@@ -56,15 +57,11 @@ void PlayerComponent::OnCollisionEnter(const Event& event)
 	if (istring_compare(actor->tag, "ground"))
 	{
 		contacts.push_back(actor);
+		numJumps = 2;
 	}
 	if (istring_compare(actor->tag, "enemy"))
 	{
 		owner->scene->engine->Get<AudioSystem>()->PlayAudio("hurt");
-	}
-	if (istring_compare(actor->tag, "pickUp"))
-	{
-		owner->scene->engine->Get<AudioSystem>()->PlayAudio("coin");
-		actor->destroy = true;
 	}
 }
 
@@ -88,6 +85,8 @@ bool PlayerComponent::Write(const rapidjson::Value& value) const
 bool PlayerComponent::Read(const rapidjson::Value& value)
 {
 	JSON_READ(value, speed);
+	JSON_READ(value, jump);
+	JSON_READ(value, numJumps);
 
 	return true;
 }

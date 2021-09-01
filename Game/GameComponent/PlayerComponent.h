@@ -21,7 +21,8 @@ public:
 
 public:
 	float speed{ 0 };
-
+	int jump{ 0 };
+	int numJumps{ 0 };
 private:
 	std::list<nc::Actor*> contacts;
 };

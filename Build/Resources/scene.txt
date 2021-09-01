@@ -18,7 +18,9 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":10
+               "speed":10,
+               "jump":300,
+               "numJumps":2
             },
             {
                "type":"RBPhysicsComponent",
@@ -50,13 +52,13 @@
                   },
                   {
                      "name":"walk_right",
-                     "sequence.fps":10,
+                     "sequence.fps":20,
                      "sequence.startFrame":90,
                      "sequence.endFrame":95
                   },
                   {
                      "name":"walk_left",
-                     "sequence.fps":10,
+                     "sequence.fps":20,
                      "sequence.startFrame":162,
                      "sequence.endFrame":167
                   }
@@ -96,7 +98,7 @@
             {
                "type":"SpriteAnimationComponent",
                "textureName":"bat.png",
-               "fps":2,
+               "fps":6,
                "numFramesX":4,
                "numFramesY":1
             }
@@ -134,7 +136,7 @@
             {
                "type":"SpriteAnimationComponent",
                "textureName":"coin.png",
-               "fps":2,
+               "fps":8,
                "numFramesX":8,
                "numFramesY":1
             }
@@ -142,30 +144,55 @@
       },
       {
          "type":"Actor",
+         "name":"tile01",
          "tag":"ground",
+         "prototype": true,
          "transform":{
-            "position":[
-               400,
-               550
-            ],
-            "rotation":0,
             "scale":[
-               1,
-               1
+               2,
+               2
             ]
          },
          "components":[
             {
                "type":"SpriteComponent",
-               "textureName":"ground.png"
+               "textureName":"tilemap2.png",
+               "rect": [416, 128, 32, 32]
             },
             {
                "type":"RBPhysicsComponent",
                "data.isDynamic":false,
                "data.density":1,
                "data.size":[
-                  800,
-                  20
+                  30,
+                  42
+               ]
+            }
+         ]
+      },{
+         "type":"Actor",
+         "name":"tile02",
+         "tag":"ground",
+         "prototype": true,
+         "transform":{
+            "scale":[
+               2,
+               2
+            ]
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "textureName":"tilemap2.png",
+               "rect": [0, 256, 32, 32]
+            },
+            {
+               "type":"RBPhysicsComponent",
+               "data.isDynamic":false,
+               "data.density":1,
+               "data.size":[
+                  35,
+                  42
                ]
             }
          ]
@@ -175,7 +202,7 @@
          "tag":"",
          "transform":{
             "position":[
-               0,
+               800,
                300
             ],
             "rotation":0,
@@ -205,7 +232,7 @@
          "tag":"",
          "transform":{
             "position":[
-               800,
+               0,
                300
             ],
             "rotation":0,

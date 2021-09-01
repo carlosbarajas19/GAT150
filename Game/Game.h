@@ -4,6 +4,16 @@
 class Game
 {
 public:
+	enum class eState
+	{
+		Reset,
+		Title,
+		StartGame,
+		StartLevel,
+		Level,
+		PlayerDead,
+		GameOver
+	};
 
 public:
 	void Initialize();
@@ -13,10 +23,27 @@ public:
 	void Draw();
 	bool IsQuit() { return quit; }
 
+	void OnAddScore(const nc::Event& event);
+
+private:
+
+	void Reset();
+	void Title();
+	void StartGame();
+	void StartLevel();
+	void Level();
+	void PlayerDead();
+	void GameOver();
+
 public:
 	std::unique_ptr<nc::Engine> engine;
 	std::unique_ptr<nc::Scene> scene;
 
 private:
 	bool quit = false;
+
+	eState state = eState::Reset;
+	int score = 0;
+	float stateTimer = 0;
+	float spawnTimer = 0;
 };

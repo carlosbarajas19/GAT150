@@ -30,8 +30,6 @@ namespace nc
 		int frame{ 0 }, fps{ 0 }, numFramesX{ 0 }, numFramesY{ 0 }, startFrame{ 0 }, endFrame{ 0 };
 		float frameTimer{ 0 }, frameTime{ 0 };
 
-		SDL_Rect rect;
-
 		std::map<std::string, Sequence> sequences;
 		std::string sequenceName;
 	};

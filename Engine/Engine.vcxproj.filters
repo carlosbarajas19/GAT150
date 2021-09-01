@@ -119,6 +119,12 @@
     <ClCompile Include="Component\AudioComponent.cpp">
       <Filter>Resources\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Object\Tilemap.cpp">
+      <Filter>Resources\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\TextComponent.cpp">
+      <Filter>Resources\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\EventSystem.h">
@@ -238,9 +244,18 @@
     <ClInclude Include="Component\TextComponent.h">
       <Filter>Resources\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Object\Tilemap.h">
+      <Filter>Resources\Object</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Resources\scene.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Build\Resources\map.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="..\Build\Resources\title.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

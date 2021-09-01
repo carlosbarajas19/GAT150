@@ -23,6 +23,8 @@ namespace nc
 
 	void Actor::Update(float dt)
 	{
+		if (!active) return;
+
 		transform.Update();
 		std::for_each(children.begin(), children.end(), [](auto& child) { child->transform.Update(child->parent->transform.matrix); });
 		std::for_each(components.begin(), components.end(), [](auto& component) { component->Update(); });
@@ -30,6 +32,8 @@ namespace nc
 
 	void Actor::Draw(Renderer* renderer)
 	{
+		if (!active) return;
+
 		std::for_each(components.begin(), components.end(), [renderer](auto& component) 
 			{ 
 				if (dynamic_cast<GraphicsComponent*>(component.get()))
