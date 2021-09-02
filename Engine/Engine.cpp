@@ -19,6 +19,9 @@ namespace nc
 		REGISTER_CLASS(SpriteAnimationComponent);
 		REGISTER_CLASS(PhysicsComponent);
 		REGISTER_CLASS(RBPhysicsComponent);
+		REGISTER_CLASS(AudioComponent);
+		REGISTER_CLASS(TextComponent);
+
 	}
 
 	void Engine::Shutdown()

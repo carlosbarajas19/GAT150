@@ -31,7 +31,7 @@ void PickUpComponent::OnCollisionEnter(const nc::Event& event)
     void* p = std::get<void*>(event.data);
     Actor* actor = reinterpret_cast<Actor*>(p);
 
-    if (istring_compare(actor->tag, "player")) {
+    if (istring_compare(actor->tag, "Player")) {
         owner->scene->engine->Get<AudioSystem>()->PlayAudio("coin");
         owner->destroy = true;
 

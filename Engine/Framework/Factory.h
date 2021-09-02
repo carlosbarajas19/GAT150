@@ -63,7 +63,7 @@ namespace nc
 			return std::unique_ptr<T>(dynamic_cast<T*>(iter->second->Create().release()));
 		}
 		return std::unique_ptr<T>();
-		return std::unique_ptr<T>();
+
 	}
 
 	template<class TKey, class TBase>

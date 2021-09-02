@@ -24,6 +24,7 @@ void Game::Initialize()
 
 	//events
 	engine->Get<nc::EventSystem>()->Subscribe("add_score", std::bind(&Game::OnAddScore, this, std::placeholders::_1));
+	engine->Get<nc::EventSystem>()->Subscribe("player_dead", std::bind(&Game::PlayerDead, this));
 	//player death
 }
 
@@ -69,11 +70,11 @@ void Game::Update()
 	}
 
 	//update score
-	/*auto scoreActor = scene->FindActor("Score");
+	auto scoreActor = scene->FindActor("Score");
 	if (scoreActor)
 	{
 		scoreActor->GetComponent<nc::TextComponent>()->SetText(std::to_string(score));
-	}*/
+	}
 
 	scene->Update(engine->time.deltaTime);
 }
@@ -90,11 +91,12 @@ void Game::Draw()
 
 void Game::OnAddScore(const nc::Event& event)
 {
-
+	score += std::get<int>(event.data);
 }
 
 void Game::Reset()
 {
+	score = 0;
 	scene->RemoveAllActors();
 
 	rapidjson::Document document;
@@ -106,7 +108,11 @@ void Game::Reset()
 }
 
 void Game::Title()
-{
+{	
+	auto gameOver = scene->FindActor("GameOver");
+	assert(gameOver);
+	gameOver->active = false;
+
 	if (engine->Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == nc::InputSystem::eKeyState::Pressed)
 	{
 		auto title = scene->FindActor("Title");
@@ -135,16 +141,17 @@ void Game::StartGame()
 	tilemap.Create();
 
 	state = eState::StartLevel;
+
 	stateTimer = 0;
 }
 
 void Game::StartLevel()
 {
-	stateTimer = engine->time.deltaTime;
+	stateTimer += engine->time.deltaTime;
 	if (stateTimer >= 1)
 	{
 		auto player = nc::ObjectFactory::Instance().Create<nc::Actor>("Player");
-		player->transform.position = (400, 350);
+		player->transform.position = nc::Vector2{ 400, 350 };
 		scene->AddActor(std::move(player));
 
 		spawnTimer = 2;
@@ -158,15 +165,31 @@ void Game::Level()
 	if (spawnTimer <= 0)
 	{
 		auto coin = nc::ObjectFactory::Instance().Create<nc::Actor>("Coin");
-		coin->transform.position = (nc::RandomRange(100,700), 150.0f);
+		coin->transform.position = nc::Vector2{ nc::RandomRange(100,700), 150.0f };
 		scene->AddActor(std::move(coin));
+
+		spawnTimer = 2;
 	}
 }
 
 void Game::PlayerDead()
 {
+	state = eState::GameOver;
 }
 
 void Game::GameOver()
-{
+{	
+
+	auto gameOver = scene->FindActor("GameOver");
+	assert(gameOver);
+	gameOver->active = true;
+
+	if (engine->Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_SPACE) == nc::InputSystem::eKeyState::Pressed)
+	{
+		auto title = scene->FindActor("Title");
+		assert(title);
+		title->active = false;
+
+		state = eState::Reset;
+	}
 }

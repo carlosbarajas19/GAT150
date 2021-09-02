@@ -38,12 +38,16 @@
 //objects
 #include "Object/Scene.h"
 #include "Object/Actor.h"
+#include "Object/Tilemap.h"
+
+//components
 #include "Component/SpriteComponent.h"
 #include "Component/SpriteAnimationComponent.h"
 #include "Component/PhysicsComponent.h"
 #include "Component/RBPhysicsComponent.h"
-#include "Object/Tilemap.h"
 #include "Component/TextComponent.h"
+#include "Component/AudioComponent.h"
+
 
 #define NOMINMAX
 #include <vector>
